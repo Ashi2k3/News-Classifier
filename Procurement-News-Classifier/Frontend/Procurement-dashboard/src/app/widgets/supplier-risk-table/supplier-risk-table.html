@@ -1,0 +1,72 @@
+<div class="table-card">
+
+  <div class="card-header">
+    <h3>Supplier & Entity Risk Intelligence</h3>
+    <span class="entity-count">{{ entitySummaries.length }} entities tracked</span>
+  </div>
+
+  <div *ngIf="entitySummaries.length > 0; else noData">
+
+    <div class="entity-block" *ngFor="let entity of entitySummaries">
+
+      <div class="entity-row" (click)="toggleExpand(entity)">
+
+        <div class="entity-left">
+          <span class="expand-icon">{{ entity.expanded ? '▼' : '▶' }}</span>
+          <span class="entity-name">{{ entity.name }}</span>
+        </div>
+
+        <div class="entity-bar-wrapper">
+          <div class="bar-track">
+            <div
+              class="bar-fill"
+              [style.width.%]="entity.barWidth"
+              [style.background]="entity.color">
+            </div>
+          </div>
+        </div>
+
+        <div class="entity-right">
+          <span class="entity-articles">
+            {{ entity.count }} {{ entity.count === 1 ? 'article' : 'articles' }}
+          </span>
+          <span class="entity-score" [style.color]="entity.color">
+            Score: {{ entity.maxScore }}
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Expanded detail table -->
+      <div class="detail-table" *ngIf="entity.expanded">
+
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Score</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let risk of entity.risks">
+              <td class="risk-title">{{ risk.title }}</td>
+              <td><span class="cat-badge">{{ risk.category }}</span></td>
+              <td class="score" [style.color]="entity.color">{{ risk.risk_score }}</td>
+              <td class="date">{{ risk.published_at | date:'mediumDate' }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <ng-template #noData>
+    <div class="no-data">No entity data available yet.</div>
+  </ng-template>
+
+</div>

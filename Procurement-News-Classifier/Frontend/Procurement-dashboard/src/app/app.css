@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0c1e32;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* MAIN LAYOUT */
+
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* CONTENT AREA */
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #0f2744;
+  min-width: 0;
+}
+
+/* SCROLLABLE PAGE CONTENT */
+
+.page-content {
+  flex: 1;
+  height: 0;
+  padding: 30px 36px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* CUSTOM SCROLLBAR */
+
+.page-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.page-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.page-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+
+.page-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* LEGACY — kept for backward compatibility */
+
+.main-content {
+  margin-left: 240px;
+  padding: 30px;
+}

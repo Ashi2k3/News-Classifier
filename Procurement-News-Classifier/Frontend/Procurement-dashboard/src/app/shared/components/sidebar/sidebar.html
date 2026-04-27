@@ -1,0 +1,69 @@
+<div class="sidebar">
+
+  <div class="sidebar-brand">
+    <span class="sidebar-brand-text">Procurement AI</span>
+  </div>
+
+  <div class="menu-container">
+    <ul class="menu">
+
+      <li (click)="scrollTo('dashboard')" [class.active]="activeSection === 'dashboard'">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+        </svg>
+        Dashboard
+      </li>
+
+       <li (click)="scrollTo('latestNews')" [class.active]="activeSection === 'latestNews'">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        News Intelligence
+      </li>
+
+      <li (click)="scrollTo('riskOverview')" [class.active]="activeSection === 'riskOverview'">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        Risk Monitor
+      </li>
+
+     
+
+      <li (click)="scrollTo('allNews')" [class.active]="activeSection === 'allNews'">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/>
+          <path d="M16 2v4"/><path d="M8 10h8"/><path d="M8 14h8"/>
+        </svg>
+        News Feed
+      </li>
+
+      <li (click)="scrollTo('supplierRisk')" [class.active]="activeSection === 'supplierRisk'">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Suppliers
+      </li>
+
+     
+
+    </ul>
+  </div>
+
+  <div class="sidebar-profile">
+
+    <img src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=Ql6UUNosrWAY0w&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fpng-user-icon-icons-logos-emojis-users-2400.png&ehk=8agkVrs8bo9zafVF9Qk4%2bFqv5IwaEZrb8DwX%2ftfJtNc%3d&risl=&pid=ImgRaw&r=0"
+         class="profile-avatar">
+
+    <div class="profile-info">
+      <div class="profile-name">USER1</div>
+      <div class="profile-lastlogin">Last Login 25/03/2026 11:30AM</div>
+    </div>
+
+  </div>
+
+</div>

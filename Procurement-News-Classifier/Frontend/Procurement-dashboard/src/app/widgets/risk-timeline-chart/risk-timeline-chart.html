@@ -1,0 +1,75 @@
+<div class="chart-card">
+
+  <h3 class="chart-title">
+    Risks Over Time
+    <span class="chart-subtitle">Last 7 days</span>
+  </h3>
+
+  <div class="line-chart-wrapper" *ngIf="timelineData.length > 0; else noData">
+
+    <svg [attr.viewBox]="'0 0 ' + (chartWidth + 20) + ' ' + (chartHeight + 20)" class="line-svg">
+
+      <!-- Grid lines -->
+      <line
+        [attr.x1]="padX" [attr.y1]="padY"
+        [attr.x2]="padX" [attr.y2]="chartHeight"
+        stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+
+      <line
+        [attr.x1]="padX" [attr.y1]="chartHeight"
+        [attr.x2]="chartWidth" [attr.y2]="chartHeight"
+        stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+
+      <line
+        [attr.x1]="padX" [attr.y1]="chartHeight / 2"
+        [attr.x2]="chartWidth" [attr.y2]="chartHeight / 2"
+        stroke="rgba(255,255,255,0.05)"
+        stroke-width="0.5"
+        stroke-dasharray="4,4"/>
+
+      <!-- Area fill -->
+      <polyline
+        [attr.points]="getAreaPoints()"
+        fill="rgba(0,224,255,0.08)"
+        stroke="none"/>
+
+      <!-- Line -->
+      <polyline
+        [attr.points]="getLinePoints()"
+        fill="none"
+        stroke="#00e0ff"
+        stroke-width="2"
+        stroke-linejoin="round"
+        stroke-linecap="round"/>
+
+      <!-- Data points -->
+      <ng-container *ngFor="let d of timelineData; let i = index">
+        <circle
+          *ngIf="d.count > 0"
+          [attr.cx]="getPointX(i)"
+          [attr.cy]="getPointY(d.count)"
+          r="3"
+          fill="#00e0ff"/>
+      </ng-container>
+
+      <!-- X axis labels -->
+      <ng-container *ngFor="let d of timelineData; let i = index">
+        <text
+          [attr.x]="getPointX(i)"
+          [attr.y]="chartHeight + 15"
+          text-anchor="middle"
+          fill="rgba(255,255,255,0.4)"
+          font-size="5">
+          {{ d.date | date: 'MMM d' }}
+        </text>
+      </ng-container>
+
+    </svg>
+
+  </div>
+
+  <ng-template #noData>
+    <div class="no-data">No timeline data available</div>
+  </ng-template>
+
+</div>

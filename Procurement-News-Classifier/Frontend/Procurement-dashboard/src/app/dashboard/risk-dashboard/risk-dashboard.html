@@ -1,0 +1,148 @@
+<div class="risk-container" id="dashboard">
+  <!-- AI NEWS RISK CLASSIFIER SECTION -->
+  <section id="latestNews">
+
+    <h2>AI News Risk Classifier</h2>
+
+    <textarea
+      [(ngModel)]="newsText"
+      placeholder="Paste financial, energy, supply chain or logistics news here...">
+    </textarea>
+
+    <button
+      class="analyze-btn"
+      (click)="analyzeRisk()"
+      [disabled]="isAnalyzing">
+      {{ isAnalyzing ? 'Analyzing...' : 'Analyze Risk' }}
+    </button>
+
+  </section>
+
+  
+  <!-- PROCUREMENT RISK OVERVIEW SECTION -->
+  <section id="riskOverview">
+
+    <h2>Procurement Risk Overview</h2>
+
+    <div class="live-indicator">
+      🟢 AI Risk Monitoring Active — Auto Refresh Every 6 Hours
+    </div>
+
+    <!-- ALL KPI CARDS IN ONE GRID -->
+    <!-- ROW 1 — 4 cards -->
+<div class="risk-grid">
+  <div class="risk-card" (click)="filterRisks('all')">
+    <h3>{{ totalRisks }}</h3>
+    <p>Total Risks</p>
+  </div>
+  <div class="risk-card high" (click)="filterRisks('high')">
+    <h3>{{ highRisk }}</h3>
+    <p>High Risk Alerts</p>
+  </div>
+  <div class="risk-card medium" (click)="filterRisks('medium')">
+    <h3>{{ mediumRisk }}</h3>
+    <p>Medium Risk Alerts</p>
+  </div>
+  <div class="risk-card supplier" (click)="filterRisks('all')">
+    <h3>{{ suppliersImpacted.size }}</h3>
+    <p>Entities Impacted</p>
+  </div>
+</div>
+  <!-- FILTERED RISKS -->
+    <div class="risk-details" *ngIf="filteredRisks.length > 0">
+
+      <h3 *ngIf="selectedFilter === 'high'">High Risk Alerts</h3>
+      <h3 *ngIf="selectedFilter === 'medium'">Medium Risk Alerts</h3>
+      <h3 *ngIf="selectedFilter === 'all'">All Risks</h3>
+      <h3 *ngIf="selectedFilter === 'week'">Risks This Week</h3>
+
+      <div class="risk-item" *ngFor="let risk of filteredRisks">
+        <h4>{{ risk.title }}</h4>
+        <p>{{ risk.impact_summary }}</p>
+        <div class="risk-item-footer">
+          <span class="risk-score">Score: {{ risk.risk_score }}</span>
+          <span class="risk-category">{{ risk.category }}</span>
+          <span class="risk-date">{{ risk.published_at | date: 'MMM d, y' }}</span>
+        </div>
+      </div>
+
+    </div>
+
+<!-- ROW 2 — 2 cards -->
+<div class="secondary-grid">
+  <div class="risk-card week" (click)="filterRisks('week')">
+    <h3>{{ risksThisWeek }}</h3>
+    <p>Risks This Week</p>
+    <span class="card-hint">Last 7 days</span>
+  </div>
+  <div class="risk-card category">
+    <h3 class="top-category">{{ topCategory }}</h3>
+    <p>Top Risk Category</p>
+    <span class="card-hint">Most frequent</span>
+  </div>
+</div>
+   <!-- CHARTS -->
+<div class="charts-row" *ngIf="risks.length > 0">
+  <app-risk-level-gauge [risks]="risks"></app-risk-level-gauge>
+  <app-risk-category-chart [risks]="risks"></app-risk-category-chart>
+  <app-risk-timeline-chart [risks]="risks"></app-risk-timeline-chart>
+</div>
+
+  
+
+  </section>
+   <!-- SUPPLIER RISK SECTION -->
+  <section id="supplierRisk">
+
+    <h2>Supplier Risk Intelligence</h2>
+
+    <app-supplier-risk-table [risks]="risks"></app-supplier-risk-table>
+
+  </section>
+
+  <!-- ALL NEWS SECTION -->
+  <section id="allNews">
+
+    <h2>Business Risk News Feed
+      <span class="section-subtitle">All time — {{ allNews.length }} articles</span>
+    </h2>
+
+    <div *ngIf="allNews.length > 0; else noNews">
+
+      <div class="news-item" *ngFor="let news of allNews">
+
+        <div class="news-header">
+          <span class="news-category"
+            [class]="'cat-' + (news.category || '').toLowerCase().replace(' ', '-')">
+            {{ news.category }}
+          </span>
+          <span class="news-date">{{ news.published_at | date: 'MMM d, y' }}</span>
+        </div>
+
+        <h4 class="news-title">
+          <a *ngIf="news.url" [href]="news.url" target="_blank">{{ news.title }}</a>
+          <span *ngIf="!news.url">{{ news.title }}</span>
+        </h4>
+
+        <p class="news-summary">{{ news.impact_summary }}</p>
+
+        <div class="news-footer">
+          <span class="news-entity">🏢 {{ news.entity }}</span>
+          <span class="risk-score">Score: {{ news.risk_score }}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <ng-template #noNews>
+      <div class="no-data-msg">
+        No news articles stored yet. The pipeline will populate this automatically.
+      </div>
+    </ng-template>
+
+  </section>
+
+ 
+
+</div>

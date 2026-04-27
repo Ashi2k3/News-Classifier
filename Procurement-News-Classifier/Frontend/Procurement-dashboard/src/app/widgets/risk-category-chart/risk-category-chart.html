@@ -1,0 +1,58 @@
+<div class="chart-card">
+
+  <h3 class="chart-title">Risk by Category</h3>
+
+  <div class="donut-wrapper" *ngIf="segments.length > 0; else noData">
+
+    <svg viewBox="0 0 100 100" class="donut-svg">
+
+      <circle
+        cx="50" cy="50" r="40"
+        fill="none"
+        stroke="rgba(255,255,255,0.05)"
+        stroke-width="18"/>
+
+      <circle
+        *ngFor="let seg of segments"
+        cx="50" cy="50" r="40"
+        fill="none"
+        [attr.stroke]="seg.color"
+        stroke-width="18"
+        [attr.stroke-dasharray]="seg.dash + ' ' + (251.2 - seg.dash)"
+        [attr.stroke-dashoffset]="seg.offset"
+        stroke-linecap="butt"
+        transform="rotate(-90 50 50)"/>
+
+      <text x="50" y="48"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        fill="white"
+        font-size="12"
+        font-weight="bold">
+        {{ totalRisks }}
+      </text>
+
+      <text x="50" y="60"
+        text-anchor="middle"
+        fill="rgba(255,255,255,0.5)"
+        font-size="5">
+        total
+      </text>
+
+    </svg>
+
+    <div class="donut-legend">
+      <div class="legend-item" *ngFor="let seg of segments">
+        <span class="legend-dot" [style.background]="seg.color"></span>
+        <span class="legend-label">{{ seg.label }}</span>
+        <span class="legend-count">{{ seg.count }}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #noData>
+    <div class="no-data">No category data available</div>
+  </ng-template>
+
+</div>

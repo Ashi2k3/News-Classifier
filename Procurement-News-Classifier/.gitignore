@@ -1,0 +1,36 @@
+# Python / system junk
+DLLs/
+Lib/
+Scripts/
+include/
+libs/
+tcl/
+share/
+*.dll
+*.exe
+
+# Env
+venv/
+.env
+
+# Node
+node_modules/
+# Python cache
+__pycache__/
+*.pyc
+
+# ChromaDB storage
+backend/chroma_storage/
+
+# Virtual environment
+venv/
+
+# Environment variables
+.env
+
+# Node modules (if frontend)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.dbbackend/services/chroma_storage/

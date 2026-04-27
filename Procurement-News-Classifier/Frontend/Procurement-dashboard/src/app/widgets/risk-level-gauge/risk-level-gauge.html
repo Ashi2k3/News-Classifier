@@ -1,0 +1,60 @@
+<div class="chart-card">
+
+  <h3 class="chart-title">Overall Risk Level</h3>
+
+  <div *ngIf="risks.length > 0; else noData">
+
+    <svg viewBox="0 0 200 120" class="gauge-svg">
+
+      <!-- Background arc segments — green to red -->
+      <path [attr.d]="getArcPath(100, 100, 70, 180, 216)" stroke="#34d399" stroke-width="14" fill="none" stroke-linecap="butt"/>
+      <path [attr.d]="getArcPath(100, 100, 70, 216, 252)" stroke="#a3e635" stroke-width="14" fill="none" stroke-linecap="butt"/>
+      <path [attr.d]="getArcPath(100, 100, 70, 252, 288)" stroke="#ffcc00" stroke-width="14" fill="none" stroke-linecap="butt"/>
+      <path [attr.d]="getArcPath(100, 100, 70, 288, 324)" stroke="#fb923c" stroke-width="14" fill="none" stroke-linecap="butt"/>
+      <path [attr.d]="getArcPath(100, 100, 70, 324, 360)" stroke="#ff4d4d" stroke-width="14" fill="none" stroke-linecap="butt"/>
+
+      <!-- Needle -->
+      <line
+        x1="100" y1="100"
+        [attr.x2]="getNeedleX()"
+        [attr.y2]="getNeedleY()"
+        [attr.stroke]="riskColor"
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+
+      <!-- Center dot -->
+      <circle cx="100" cy="100" r="5" [attr.fill]="riskColor"/>
+
+      <!-- Score text -->
+      <text x="100" y="90" text-anchor="middle" fill="white" font-size="22" font-weight="bold">
+        {{ avgScore }}
+      </text>
+
+      <text x="100" y="108" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.45)">
+        out of 10
+      </text>
+
+    </svg>
+
+    <!-- Zone labels -->
+    <div class="gauge-labels">
+      <span style="color: #34d399;">Low</span>
+      <span style="color: #ffcc00;">Medium</span>
+      <span style="color: #fb923c;">High</span>
+      <span style="color: #ff4d4d;">Critical</span>
+    </div>
+
+    <!-- Risk badge -->
+    <div class="risk-badge" [style.background]="riskColor + '22'" [style.border]="'1px solid ' + riskColor">
+      <span [style.color]="riskColor">{{ riskLabel }} Risk</span>
+    </div>
+
+    <p class="gauge-subtitle">Based on {{ risks.length }} risk articles</p>
+
+  </div>
+
+  <ng-template #noData>
+    <div class="no-data">No risk data available</div>
+  </ng-template>
+
+</div>

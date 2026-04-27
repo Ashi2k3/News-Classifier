@@ -1,0 +1,172 @@
+.table-card {
+  background: linear-gradient(145deg, #274d7e, #1b3961);
+  border-radius: 16px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.entity-count {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ENTITY BLOCK */
+
+.entity-block {
+  margin-bottom: 4px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ENTITY ROW */
+
+.entity-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 160px;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.entity-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.entity-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.expand-icon {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  width: 12px;
+  flex-shrink: 0;
+}
+
+.entity-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entity-bar-wrapper {
+  width: 100%;
+}
+
+.bar-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.entity-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.entity-articles {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.entity-score {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* DETAIL TABLE */
+
+.detail-table {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 8px 8px;
+  padding: 0 14px 12px;
+  margin-top: 2px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+}
+
+td {
+  padding: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  vertical-align: top;
+}
+
+.risk-title {
+  max-width: 300px;
+  line-height: 1.4;
+}
+
+.cat-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+}
+
+.score {
+  font-weight: 700;
+  text-align: center;
+}
+
+.date {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+}
+
+.no-data {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+  padding: 30px 0;
+}
